@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Birthday</string>
     <string name="action_settings">Settings</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="login">Login</string>
+    <string name="create_account">Create Account</string>
+    <string name="birthday_placeholder">birthday</string>
+    <string name="days_left_placeholder">0</string>
 </resources>

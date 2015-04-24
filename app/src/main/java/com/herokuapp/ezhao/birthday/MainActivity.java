@@ -1,19 +1,26 @@
 package com.herokuapp.ezhao.birthday;
 
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements LoginFragment.DaysRemainingListener {
+    private FragmentManager fm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        LoginFragment loginFragment = new LoginFragment();
+        ft.replace(R.id.flFragment, loginFragment);
+        ft.commit();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -35,5 +42,14 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void showDaysRemaining(long daysRemaining) {
+        FragmentTransaction ft = fm.beginTransaction();
+        CountdownFragment countdownFragment = new CountdownFragment();
+        countdownFragment.setDaysRemaining(daysRemaining);
+        ft.replace(R.id.flFragment, countdownFragment);
+        ft.commit();
     }
 }
